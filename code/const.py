@@ -7,12 +7,12 @@ COLOR_WHITE = (255, 255, 255)
 
 # E
 ENTITY_SPEED = {
-    'Level1BG0': 0.1,
-    'Level1BG1': 0.5,
-    'Level1BG2': 1.2,
-    'Level1BG3': 1.5,
-    'Level1BG4': 2,
-    'Level1BG5': 2,
+    'Level1BG0': 1,
+    'Level1BG1': 2,
+    'Level1BG2': 3,
+    'Level1BG3': 4,
+    'Level1BG4': 5,
+    'Level1BG5': 5,
 }
 
 # M

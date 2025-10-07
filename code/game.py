@@ -13,7 +13,6 @@ class Game:
         pygame.init()
         self.window = pygame.display.set_mode(size=(WIN_WIDTH, WIN_HEIGHT))
         pygame.display.set_caption("Road Master")
-        self.clock = pygame.time.Clock()
         self.menu = Menu(self.window)
 
     def run(self):
