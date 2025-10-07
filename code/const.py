@@ -5,6 +5,16 @@ COLOR_GREEN = (0, 255, 0)
 COLOR_BLUE = (0, 0, 255)
 COLOR_WHITE = (255, 255, 255)
 
+# E
+ENTITY_SPEED = {
+    'Level1BG0': 0.1,
+    'Level1BG1': 0.5,
+    'Level1BG2': 1.2,
+    'Level1BG3': 1.5,
+    'Level1BG4': 2,
+    'Level1BG5': 2,
+}
+
 # M
 MENU_OPTION = ('NEW GAME - ARCADE', 'NEW GAME - ENDLESS', 'ENTER PASSWORD', 'QUIT')
 
