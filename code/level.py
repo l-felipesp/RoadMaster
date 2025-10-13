@@ -5,25 +5,30 @@ from pygame import Surface, Rect
 from pygame.font import Font
 
 from code import entityFactory
-from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME
+from code.EntityMediator import EntityMediator
+from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME, TIMEOUT_LEVEL
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 
 ForwardLanesY = [180, 230]
+
+
 class Level:
-    def __init__(self, window, number, menu_option):
+    def __init__(self, window: Surface, number: int, player_score: list[int]):
+        self.player_score = player_score
+        self.timeout = TIMEOUT_LEVEL
         self.window = window
         self.number = number
-        self.menu_option = menu_option
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('Level1BG'))
-        self.entity_list.append(EntityFactory.get_entity('Player'))
-        self.timeout = 20000
-        pygame.time.set_timer(EVENT_ENEMY, 0)
+        player = EntityFactory.get_entity('Player')
+        player.score = player_score[0]
+        self.entity_list.append(player)
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
 
     def run(self):
         pygame.mixer.music.load(f'./asset/Level{self.number}.mp3')
+        pygame.mixer_music.set_volume(0.2)
         pygame.mixer.music.play(-1)
         clock = pygame.time.Clock()
         while True:
@@ -31,17 +36,22 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+                if ent.name == 'Player':
+                    self.level_text(14, f'Player - Health: {ent.health}| SCORE: {ent.score}', COLOR_WHITE, (10,25))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
                 if event.type == EVENT_ENEMY:
-                    self.entity_list.append(EntityFactory.get_entity('EnemyForward'))
+                    self.entity_list.append(EntityFactory.get_entity(choice))
 
             self.level_text(14, f'{self.number} - Timeout: {self.timeout / 1000 : .1f}s', COLOR_WHITE, (10, 5))
             self.level_text(14, f'FPS: {clock.get_fps() :.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
             self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
+
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple, text_rect=None):
         text_font: Font = pygame.font.SysFont("Courier", size=text_size)

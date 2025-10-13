@@ -6,6 +6,7 @@ import random
 from code.background import Background
 from code.const import WIN_WIDTH, WIN_HEIGHT
 from code.enemyForward import EnemyForward
+from code.enemyReverse import EnemyReverse
 from code.player import Player
 
 
@@ -25,4 +26,7 @@ class EntityFactory:
             case 'EnemyForward':
                 ForwardLaneY = [245, 285]
                 return EnemyForward(f'EnemyForward', position=(WIN_WIDTH+10, random.choice(ForwardLaneY)))
+            case 'EnemyReverse':
+                ReverseLaneY = [295, 335]
+                return EnemyReverse(f'EnemyReverse', position=(WIN_WIDTH+10, random.choice(ReverseLaneY)))
 
