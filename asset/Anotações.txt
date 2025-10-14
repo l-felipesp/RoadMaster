@@ -1,0 +1,20 @@
+Player
+- Posição inicial - Definida no match da EntityFactory
+- Saúde - Definida em entity.py_Entity(ABC) usando uma variável do arquivo const.py
+- Movimentação - função move descrita no arquivo player.py
+- Velocidade - variável da classe abstrata Entity usando uma variável do arquivo const.py
+
+Inimigo - Carros que vão (enemyForward.py_EnemyForward)
+- Posição inicial - random entre faixa 1 e faixa 2
+- Aparência - DEFINIR UM RANDOM PARA ISSO TAMBÉM
+- Movimentação - TENTAR DEFINIR UMA MOVIMENTAÇÃO RANDOM ENTRE VÁRIAS PRÉ-DETERMINADAS (mudar de faixa, etc)
+
+Inimigo - Carros que vêm (enemyReverse.py_EnemyReverse)
+- Posição inicial - random entre faixa 1 e faixa 2
+- Aparência - DEFINIR UM RANDOM PARA ISSO TAMBÉM
+- Movimentação - TENTAR DEFINIR UMA MOVIMENTAÇÃO RANDOM ENTRE VÁRIAS PRÉ-DETERMINADAS (mudar de faixa, etc)
+- Definir colisão
+
+Pontuação - Acho que convém criar uma entity para isso
+- Posição inicial - Será fixa
+- Funcionamento - Variará (mais pontos andando na contra-mão e andando mais próximo da direita)

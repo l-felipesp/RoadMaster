@@ -21,15 +21,15 @@ class Game:
             menu_return = menu.run()
 
             if menu_return == MENU_OPTION[0]:
-                level = Level(self.window, '1', menu_return)
+                level = Level(self.window, 1, menu_return)
                 level_return = level.run()
 
             elif menu_return == MENU_OPTION[1]:
-                level = Level(self.window, '2', menu_return)
+                level = Level(self.window, 2, menu_return)
                 level_return = level.run()
 
             elif menu_return == MENU_OPTION[2]:
-                level = Level(self.window, '3', menu_return)
+                level = Level(self.window, 3, menu_return)
                 level_return = level.run()
 
             elif menu_return == MENU_OPTION[3]:

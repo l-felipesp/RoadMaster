@@ -28,16 +28,21 @@ ENTITY_HEALTH = {
     'Level1BG4': 5,
     'Level1BG5': 5,
     'Player': 300,
+    'EnemyForward': 999,
+    'EnemyReverse': 999,
 }
 
+ENTITY_COLLISION = {
+    'Player': 100,
+}
 
 # M
 MENU_OPTION = ('NEW GAME - ARCADE', 'NEW GAME - ENDLESS', 'ENTER PASSWORD', 'QUIT')
 
-#S
+# S
 SPAWN_TIME = 6000
 
-#T
+# T
 TIMEOUT_LEVEL = 20000
 
 # W

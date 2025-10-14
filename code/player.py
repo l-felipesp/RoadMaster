@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import pygame
 
-from code.const import ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT
+from code.const import ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT, ENTITY_HEALTH
 from code.entity import Entity
 
 

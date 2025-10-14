@@ -24,9 +24,9 @@ class EntityFactory:
                 return Player('Player', position=(10, 170))
 
             case 'EnemyForward':
-                ForwardLaneY = [245, 285]
-                return EnemyForward(f'EnemyForward', position=(WIN_WIDTH+10, random.choice(ForwardLaneY)))
+                forward_lane_y = [245, 285]
+                return EnemyForward(f'EnemyForward', position=(WIN_WIDTH+10, random.choice(forward_lane_y)))
             case 'EnemyReverse':
-                ReverseLaneY = [295, 335]
-                return EnemyReverse(f'EnemyReverse', position=(WIN_WIDTH+10, random.choice(ReverseLaneY)))
+                reverse_lane_y = [295, 335]
+                return EnemyReverse(f'EnemyReverse', position=(WIN_WIDTH+10, random.choice(reverse_lane_y)))
 
