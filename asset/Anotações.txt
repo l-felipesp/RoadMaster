@@ -2,6 +2,7 @@ Player
 - Posição inicial - Definida no match da EntityFactory
 - Saúde - Definida em entity.py_Entity(ABC) usando uma variável do arquivo const.py
 - Movimentação - função move descrita no arquivo player.py
+	Talvez aqui eu deva implementar ifs usando variáveis booleanas de colisão
 - Velocidade - variável da classe abstrata Entity usando uma variável do arquivo const.py
 
 Inimigo - Carros que vão (enemyForward.py_EnemyForward)

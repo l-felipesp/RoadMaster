@@ -18,7 +18,7 @@ ENTITY_SPEED = {
     'Level1BG5': 5,
     'Player': 2,
     'EnemyForward': 2,
-    'EnemyReverse': -4,
+    'EnemyReverse': -10,
 }
 ENTITY_HEALTH = {
     'Level1BG0': 1,
@@ -40,7 +40,7 @@ ENTITY_COLLISION = {
 MENU_OPTION = ('NEW GAME - ARCADE', 'NEW GAME - ENDLESS', 'ENTER PASSWORD', 'QUIT')
 
 # S
-SPAWN_TIME = 6000
+SPAWN_TIME = 1700
 
 # T
 TIMEOUT_LEVEL = 20000

@@ -45,6 +45,7 @@ class Level:
                     quit()
                 if event.type == EVENT_ENEMY:
                     self.entity_list.append(EntityFactory.get_entity('EnemyForward'))
+                    self.entity_list.append(EntityFactory.get_entity('EnemyReverse'))
 
             #self.level_text(14, f'{self.number} - Timeout: {self.timeout / 1000 : .1f}s', COLOR_WHITE, (10, 5))
             self.level_text(14, f'FPS: {clock.get_fps() :.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
