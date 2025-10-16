@@ -8,7 +8,7 @@ from pygame.font import Font
 
 from code import entityFactory, enemyForward, player
 from code.EntityMediator import EntityMediator
-from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME, TIMEOUT_LEVEL
+from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME, TIMEOUT_LEVEL, COLOR_YELLOW
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 
@@ -38,7 +38,7 @@ class Level:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
                 if ent.name == 'Player':
-                    self.level_text(14, f'Player - Health: {ent.health}| SCORE: {ent.score}', COLOR_WHITE, (10, 25))
+                    self.level_text(14, f'Player - Health: {ent.health}| SCORE: {ent.score}', COLOR_YELLOW, (10, 25))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -52,8 +52,8 @@ class Level:
             self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
 
-            #EntityMediator.verify_collision(entity_list=self.entity_list)
-            #EntityMediator.verify_health(entity_list=self.entity_list)
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple, text_rect=None):
         text_font: Font = pygame.font.SysFont("Courier", size=text_size)

@@ -16,9 +16,9 @@ class Player(Entity):
     def move(self, ):
         pressed_key = pygame.key.get_pressed()
         if pressed_key[pygame.K_UP] and self.rect.top > 150:
-            self.rect.centery -= 1
+            self.rect.centery -= 2
         if pressed_key[pygame.K_DOWN] and self.rect.bottom < WIN_HEIGHT:
-            self.rect.centery += 1
+            self.rect.centery += 2
         if pressed_key[pygame.K_LEFT] and self.rect.left > 0:
             self.rect.centerx -= ENTITY_SPEED[self.name]
         if pressed_key[pygame.K_RIGHT] and self.rect.right < WIN_WIDTH:

@@ -9,6 +9,19 @@ COLOR_WHITE = (255, 255, 255)
 
 # E
 EVENT_ENEMY = pygame.USEREVENT + 1
+
+ENTITY_DAMAGE = {
+    'Level1BG0': 0,
+    'Level1BG1': 0,
+    'Level1BG2': 0,
+    'Level1BG3': 0,
+    'Level1BG4': 0,
+    'Level1BG5': 0,
+    'Player': 0,
+    'EnemyForward': 50,
+    'EnemyReverse': 50,
+}
+
 ENTITY_SPEED = {
     'Level1BG0': 1,
     'Level1BG1': 2,
@@ -27,7 +40,7 @@ ENTITY_HEALTH = {
     'Level1BG3': 4,
     'Level1BG4': 5,
     'Level1BG5': 5,
-    'Player': 300,
+    'Player': 30000000,
     'EnemyForward': 999,
     'EnemyReverse': 999,
 }
@@ -40,6 +53,7 @@ ENTITY_COLLISION = {
 MENU_OPTION = ('NEW GAME - ARCADE', 'NEW GAME - ENDLESS', 'ENTER PASSWORD', 'QUIT')
 
 # S
+SCORE_POS = [10, 100]
 SPAWN_TIME = 1700
 
 # T
