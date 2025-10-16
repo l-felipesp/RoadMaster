@@ -1,3 +1,5 @@
+import pygame
+
 from code import player
 from code.const import WIN_WIDTH
 from code.enemyForward import EnemyForward
@@ -36,9 +38,23 @@ class EntityMediator:
                     ent1.rect.left <= ent2.rect.right and
                     ent1.rect.bottom >= ent2.rect.top and
                     ent1.rect.top <= ent2.rect.bottom):
-                ent1.health -= ent2.damage
-                dt = 1
+                now = pygame.time.get_ticks()
+                INVULN_MS = 800
 
+                if now > getattr(player, "invulnerable_until", 0):
+                    ent1.health -= ent2.damage
+                    player.invulnerable_until = now + INVULN_MS
+                    try:
+                        if getattr(ent1, "collision_sound", None) is not None:
+                            ch = pygame.mixer.find_channel()
+                            if ch is not None:
+                                ch.play(ent1.collision_sound)
+                            else:
+                                ent1.collision_sound.play()
+                    except Exception as e:
+                        print("Erro ao tocar som de colisão:", e)
+                else:
+                    pass
 
     # @staticmethod
     # def __give_score(player_position_y: tuple, player_position_x: tuple):

@@ -9,6 +9,15 @@ from code.entity import Entity
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
+        self.invulnerable_until = 0
+        collision_path = f'./asset/crash.mp3'
+        try:
+            self.collision_sound = pygame.mixer.Sound(collision_path)
+            self.collision_sound.set_volume(0.6)
+        except Exception as e:
+            print(f"[WARN] Não foi possível carregar crash.mp3: {e}")
+            self.collision_sound = None
+        self.collision_channel = None
 
     def update(self, ):
         pass
@@ -23,3 +32,5 @@ class Player(Entity):
             self.rect.centerx -= ENTITY_SPEED[self.name]
         if pressed_key[pygame.K_RIGHT] and self.rect.right < WIN_WIDTH:
             self.rect.centerx += ENTITY_SPEED[self.name]
+
+
