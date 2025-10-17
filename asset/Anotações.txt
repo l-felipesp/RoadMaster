@@ -19,3 +19,7 @@ Inimigo - Carros que vêm (enemyReverse.py_EnemyReverse)
 Pontuação - Acho que convém criar uma entity para isso
 - Posição inicial - Será fixa
 - Funcionamento - Variará (mais pontos andando na contra-mão e andando mais próximo da direita)
+
+
+Seu jogo precisa ter um menu e já na tela do menu você deve escrever em alguma
+parte dele os comandos de controle. Por exemplo: “Space – Saltar”. Ou “CTRL – Atirar” etc.

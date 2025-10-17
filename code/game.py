@@ -5,6 +5,7 @@ import pygame
 from code.const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION
 from code.level import Level
 from code.menu import Menu
+from code.score import ScoreSystem
 
 
 class Game:
@@ -15,14 +16,20 @@ class Game:
         pygame.display.set_caption("Road Master")
         self.menu = Menu(self.window)
 
-    def run(self):
+    def run(self, player_lane=None):
         while True:
             menu = Menu(self.window)
             menu_return = menu.run()
 
             if menu_return == MENU_OPTION[0]:
-                level = Level(self.window, 1, menu_return)
-                level_return = level.run()
+                player_score = [0]
+                level = Level(self.window, 1, player_score)
+                level_return = level.run(player_score)
+                # if level_return:
+                #     level = Level(self.window, 'Level2', menu_return, player_score)
+                #     level_return = level.run(player_score)
+                #     if level_return:
+                #         score.save(menu_return, player_score)
 
             elif menu_return == MENU_OPTION[1]:
                 level = Level(self.window, 2, menu_return)

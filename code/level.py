@@ -16,29 +16,51 @@ ForwardLanesY = [180, 230]
 
 
 class Level:
-    def __init__(self, window: Surface, number: int, player_score: list[int]):
-        self.player_score = player_score
+    def __init__(self, window: Surface, number: int, player_score: int):
         self.window = window
         self.number = number
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('Level1BG'))
         player = EntityFactory.get_entity('Player')
-        player.score = player_score[0]
-        self.entity_list.append(player)
+        if not hasattr(player, 'score'):
+            player.score = 0
+        self.player = player
+        self.start_time = pygame.time.get_ticks()
+        self.score_rate = 10.0
+        self.entity_list.append(self.player)
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
+        if number == 0 and isinstance(player_score, (list, tuple)) and len(player_score) > 0:
+            self.player.score = player_score[0]
 
-    def run(self):
+    def run(self, player_score: list[int]):
         pygame.mixer.music.load(f'./asset/Level{self.number}.mp3')
-        pygame.mixer_music.set_volume(0.2)
+        pygame.mixer.music.set_volume(0.2)
         pygame.mixer.music.play(-1)
         clock = pygame.time.Clock()
         while True:
-            clock.tick(60)
-            for ent in self.entity_list:
+            dt_ms = clock.tick(60)
+            dt = dt_ms / 1000.0
+
+            # Atualiza score do player por tempo decorrido
+            if hasattr(self, 'player') and getattr(self.player, 'alive', True):
+                self.player.score = getattr(self.player, 'score', 0) + self.score_rate * dt
+
+            # Desenhar + atualizar entidades
+            for ent in list(self.entity_list):  # itera sobre cópia segura
+                if ent is None:
+                    continue
                 self.window.blit(source=ent.surf, dest=ent.rect)
-                ent.move()
-                if ent.name == 'Player':
-                    self.level_text(14, f'Player - Health: {ent.health}| SCORE: {ent.score}', COLOR_YELLOW, (10, 25))
+                # passar dt para move se a entidade aceitar
+                try:
+                    ent.move(dt)
+                except TypeError:
+                    ent.move()
+                # desenha status do player quando encontrar a entidade Player
+                if getattr(ent, 'name', None) == 'Player':
+                    self.level_text(14, f'Player - Health: {ent.health} | SCORE: {int(ent.score)}', COLOR_YELLOW,
+                                    (5, 5))
+
+            # eventos
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -47,11 +69,12 @@ class Level:
                     self.entity_list.append(EntityFactory.get_entity('EnemyForward'))
                     self.entity_list.append(EntityFactory.get_entity('EnemyReverse'))
 
-            #self.level_text(14, f'{self.number} - Timeout: {self.timeout / 1000 : .1f}s', COLOR_WHITE, (10, 5))
+            # Informações extras - FPS e quantidade de entidades - apenas debug
             self.level_text(14, f'FPS: {clock.get_fps() :.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
             self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
 
+            # verificações de colisão e health
             EntityMediator.verify_collision(entity_list=self.entity_list)
             EntityMediator.verify_health(entity_list=self.entity_list)
 

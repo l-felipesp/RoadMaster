@@ -21,6 +21,17 @@ ENTITY_DAMAGE = {
     'EnemyForward': 50,
     'EnemyReverse': 50,
 }
+ENTITY_SCORE = {
+    'Level1BG0': 0,
+    'Level1BG1': 0,
+    'Level1BG2': 0,
+    'Level1BG3': 0,
+    'Level1BG4': 0,
+    'Level1BG5': 0,
+    'Player': 0,
+    'EnemyForward': 0,
+    'EnemyReverse': 0,
+}
 
 ENTITY_SPEED = {
     'Level1BG0': 1,
@@ -54,7 +65,7 @@ MENU_OPTION = ('NEW GAME - ARCADE', 'NEW GAME - ENDLESS', 'ENTER PASSWORD', 'QUI
 
 # S
 SCORE_POS = [10, 100]
-SPAWN_TIME = 1700
+SPAWN_TIME = 1900
 
 # T
 TIMEOUT_LEVEL = 20000
