@@ -56,9 +56,6 @@ class EntityMediator:
                 else:
                     pass
 
-    # @staticmethod
-    # def __give_score(player_position_y: tuple, player_position_x: tuple):
-
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
         for i in range(len(entity_list)):

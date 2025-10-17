@@ -5,7 +5,6 @@ import pygame
 from code.const import ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT, ENTITY_HEALTH
 from code.entity import Entity
 
-
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
@@ -18,9 +17,6 @@ class Player(Entity):
             print(f"[WARN] Não foi possível carregar crash.mp3: {e}")
             self.collision_sound = None
         self.collision_channel = None
-
-    def update(self, ):
-        pass
 
     def move(self, ):
         pressed_key = pygame.key.get_pressed()

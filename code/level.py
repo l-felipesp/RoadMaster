@@ -12,9 +12,6 @@ from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME, TIMEOUT
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 
-ForwardLanesY = [180, 230]
-
-
 class Level:
     def __init__(self, window: Surface, number: int, player_score: int):
         self.window = window
