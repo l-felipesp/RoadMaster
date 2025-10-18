@@ -1,7 +1,6 @@
 import pygame
 
 from code import player
-from code.const import WIN_WIDTH
 from code.enemyForward import EnemyForward
 from code.enemyReverse import EnemyReverse
 from code.entity import Entity
@@ -23,7 +22,7 @@ class EntityMediator:
     def verify_health(entity_list: list[Entity]):
         for ent in entity_list:
             if ent.health <= 0:
-                entity_list.remove(ent)
+               entity_list.remove(ent)
 
     @staticmethod
     def __verify_collision_entity(ent1, ent2):

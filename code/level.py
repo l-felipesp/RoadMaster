@@ -13,7 +13,7 @@ from code.entity import Entity
 from code.entityFactory import EntityFactory
 
 class Level:
-    def __init__(self, window: Surface, number: int, player_score: int):
+    def __init__(self, window: Surface, number: int, game_mode: str, player_score: int):
         self.window = window
         self.number = number
         self.entity_list: list[Entity] = []
@@ -43,11 +43,10 @@ class Level:
                 self.player.score = getattr(self.player, 'score', 0) + self.score_rate * dt
 
             # Desenhar + atualizar entidades
-            for ent in list(self.entity_list):  # itera sobre cópia segura
+            for ent in list(self.entity_list):
                 if ent is None:
                     continue
                 self.window.blit(source=ent.surf, dest=ent.rect)
-                # passar dt para move se a entidade aceitar
                 try:
                     ent.move(dt)
                 except TypeError:
@@ -67,16 +66,28 @@ class Level:
                     self.entity_list.append(EntityFactory.get_entity('EnemyReverse'))
 
             # Informações extras - FPS e quantidade de entidades - apenas debug
-            self.level_text(14, f'FPS: {clock.get_fps() :.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
+            # self.level_text(14, f'FPS: {clock.get_fps() :.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
+            # self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
 
             # verificações de colisão e health
             EntityMediator.verify_collision(entity_list=self.entity_list)
             EntityMediator.verify_health(entity_list=self.entity_list)
 
+            player_dead = False
+            if getattr(self, 'player', None) is not None:
+                if getattr(self.player, 'health', 1) <= 0:
+                    player_dead = True
+                if self.player not in self.entity_list:
+                    player_dead = True
+
+            if player_dead:
+                final_score = int(getattr(self.player, 'score', 0))
+                self.entity_list = [e for e in self.entity_list if getattr(e, 'name', None) != 'Player']
+                return [final_score]
+
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple, text_rect=None):
-        text_font: Font = pygame.font.SysFont("Courier", size=text_size)
+        text_font: Font = pygame.font.SysFont("Arial Black", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)

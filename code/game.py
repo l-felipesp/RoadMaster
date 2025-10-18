@@ -16,28 +16,24 @@ class Game:
         pygame.display.set_caption("Road Master")
         self.menu = Menu(self.window)
 
-    def run(self, player_lane=None):
+    def run(self):
         while True:
             menu = Menu(self.window)
             menu_return = menu.run()
+            score = ScoreSystem()
+            score.window = self.window
 
-            if menu_return == MENU_OPTION[0]:
+            if menu_return in [MENU_OPTION[0], MENU_OPTION[1]]:
                 player_score = [0]
-                level = Level(self.window, 1, player_score)
+                level = Level(self.window, 1, menu_return, player_score)
                 level_return = level.run(player_score)
-
-            elif menu_return == MENU_OPTION[1]:
-                level = Level(self.window, 2, menu_return)
-                level_return = level.run()
+                if level_return:
+                    score.save(self.window, menu_return, level_return)
 
             elif menu_return == MENU_OPTION[2]:
-                level = Level(self.window, 3, menu_return)
-                level_return = level.run()
+                score.show()
 
-            elif menu_return == MENU_OPTION[3]:
+            else:
                 pygame.quit()
                 quit()
-            else:
-                pass
-
 

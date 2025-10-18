@@ -2,20 +2,17 @@
 # -*- coding: utf-8 -*-
 import pygame
 
-from code.const import ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT, ENTITY_HEALTH
+from code.const import ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT
 from code.entity import Entity
+
 
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
         self.invulnerable_until = 0
         collision_path = f'./asset/crash.mp3'
-        try:
-            self.collision_sound = pygame.mixer.Sound(collision_path)
-            self.collision_sound.set_volume(0.6)
-        except Exception as e:
-            print(f"[WARN] Não foi possível carregar crash.mp3: {e}")
-            self.collision_sound = None
+        self.collision_sound = pygame.mixer.Sound(collision_path)
+        self.collision_sound.set_volume(0.6)
         self.collision_channel = None
 
     def move(self, ):

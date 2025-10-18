@@ -6,6 +6,7 @@ COLOR_YELLOW = (255, 255, 0)
 COLOR_GREEN = (0, 255, 0)
 COLOR_BLUE = (0, 0, 255)
 COLOR_WHITE = (255, 255, 255)
+COLOR_BLACK = (0, 0, 0)
 
 # E
 EVENT_ENEMY = pygame.USEREVENT + 1
@@ -42,7 +43,7 @@ ENTITY_SPEED = {
     'Level1BG5': 5,
     'Player': 2,
     'EnemyForward': 2,
-    'EnemyReverse': -10,
+    'EnemyReverse': -16,
 }
 ENTITY_HEALTH = {
     'Level1BG0': 1,
@@ -51,7 +52,7 @@ ENTITY_HEALTH = {
     'Level1BG3': 4,
     'Level1BG4': 5,
     'Level1BG5': 5,
-    'Player': 30000000,
+    'Player': 300,
     'EnemyForward': 999,
     'EnemyReverse': 999,
 }
@@ -64,7 +65,22 @@ ENTITY_COLLISION = {
 MENU_OPTION = ('NEW GAME - ARCADE', 'NEW GAME - TIME ATTACK', 'HIGH SCORES', 'QUIT')
 
 # S
-SCORE_POS = [10, 100]
+WIN_WIDTH = 576
+WIN_HEIGHT = 324
+SCORE_POS = {
+    'Title': (WIN_WIDTH // 2, 50),
+    'EnterName': (WIN_WIDTH // 2, 85),
+    'ScoreValue': (WIN_WIDTH // 2, 110),
+    'Name': (WIN_WIDTH // 2, 150),
+    'Label': (WIN_WIDTH // 2, 190),
+    # lista de posições para as linhas do TOP 10 (x,y)
+    'Lines': [
+        (WIN_WIDTH // 2, 220 + i * 26) for i in range(10)
+    ],
+    # fallback start y
+    'LinesStartY': 220
+}
+
 SPAWN_TIME = 1900
 
 # T
@@ -73,3 +89,4 @@ TIMEOUT_LEVEL = 20000
 # W
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
+
