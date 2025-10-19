@@ -53,7 +53,6 @@ class ScoreSystem:
                     sys.exit()
                 elif event.type == KEYDOWN:
                     if event.key == K_RETURN and len(name) == 4:
-                        # sanitize name
                         safe_name = ''.join([c for c in name if c.isprintable() and c != '|'])[:20].upper()
                         db_proxy.save({'name': safe_name, 'score': score_value, 'date': get_formatted_date()})
                         db_proxy.close()
@@ -79,7 +78,8 @@ class ScoreSystem:
         self.rect = self.surf.get_rect(left=0, top=0)
         self.window.blit(self.surf, self.rect)
         self.score_text(48, 'TOP SCORES', COLOR_WHITE, SCORE_POS['Title'])
-        self.score_text(20, 'NAME     SCORE           DATE', COLOR_WHITE, SCORE_POS['Label'])
+        self.score_text(12, 'Press ESC to return to MENU', COLOR_ORANGE, SCORE_POS['Tips'])
+        self.score_text(20, 'NAME        SCORE             DATE', COLOR_WHITE, SCORE_POS['Label'])
         db_proxy = DBProxy('DBScore')
         list_score = db_proxy.retrieve_top10()
         lines_pos = SCORE_POS.get('Lines', None)
@@ -98,7 +98,7 @@ class ScoreSystem:
             else:
                 pos = (x_center, y_start + idx * 26)
 
-            self.score_text(20, f'{name:8s}   {int(score):05d}   {date}', COLOR_WHITE, pos)
+            self.score_text(15, f'         {name:8s}             {int(score):05d}              {date}', COLOR_WHITE, pos)
 
         while True:
             for event in pygame.event.get():

@@ -7,6 +7,7 @@ COLOR_GREEN = (0, 255, 0)
 COLOR_BLUE = (0, 0, 255)
 COLOR_WHITE = (255, 255, 255)
 COLOR_BLACK = (0, 0, 0)
+COLOR_RED = (255, 75, 20)
 
 # E
 EVENT_ENEMY = pygame.USEREVENT + 1
@@ -72,13 +73,10 @@ SCORE_POS = {
     'EnterName': (WIN_WIDTH // 2, 85),
     'ScoreValue': (WIN_WIDTH // 2, 110),
     'Name': (WIN_WIDTH // 2, 150),
-    'Label': (WIN_WIDTH // 2, 190),
-    # lista de posições para as linhas do TOP 10 (x,y)
-    'Lines': [
-        (WIN_WIDTH // 2, 220 + i * 26) for i in range(10)
-    ],
-    # fallback start y
-    'LinesStartY': 220
+    'Label': (WIN_WIDTH // 2, 110),
+    'Lines': [(WIN_WIDTH // 2, 130 + i * 26) for i in range(10)],
+    'LinesStartY': 110,
+    'Tips': (WIN_WIDTH // 2, 10)
 }
 
 SPAWN_TIME = 1900

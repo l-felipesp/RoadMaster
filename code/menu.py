@@ -4,7 +4,8 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, COLOR_WHITE, COLOR_YELLOW, COLOR_BLACK, WIN_HEIGHT
+from code.const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, COLOR_WHITE, COLOR_YELLOW, COLOR_BLACK, WIN_HEIGHT, \
+    COLOR_RED
 
 
 class Menu:
@@ -20,18 +21,16 @@ class Menu:
         pygame.mixer_music.set_volume(0.2)
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(text_size=40, text='ROAD MASTER', text_color=COLOR_ORANGE,
+            self.menu_text(text_size=40, text='ROAD MASTER', text_color=COLOR_RED,
                            text_center_pos=((WIN_WIDTH / 2), 60))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
                     self.menu_text(text_size=20, text='>' + MENU_OPTION[i] + '<', text_color=COLOR_YELLOW,
                                    text_center_pos=((WIN_WIDTH / 2), 180 + 30 * i)),
-                    self.menu_text(
-                        text_size=12,
-                        text='Controls: UP, DOWN, LEFT and RIGHT to move',
-                        text_color=COLOR_BLACK,
-                        text_center_pos=(WIN_WIDTH / 2, WIN_HEIGHT - 20))
+                    self.menu_text(text_size=12, text='Controls: UP, DOWN, LEFT and RIGHT to move',
+                                   text_color=COLOR_BLACK,
+                                   text_center_pos=(WIN_WIDTH / 2, WIN_HEIGHT - 20))
                 else:
                     self.menu_text(text_size=20, text=MENU_OPTION[i], text_color=COLOR_WHITE,
                                    text_center_pos=((WIN_WIDTH / 2), 180 + 30 * i)),

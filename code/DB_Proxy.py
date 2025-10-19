@@ -35,7 +35,6 @@ class DBProxy:
 
     def retrieve_top10(self) -> List[Tuple[int, str, int, str]]:
         #Retorna lista de tuplas (id, name, score, date) ordenadas por score desc, limite de 10.
-
         cur = self.connection.cursor()
         rows = cur.execute("SELECT * FROM dados ORDER BY score DESC LIMIT 10").fetchall()
         return rows

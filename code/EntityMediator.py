@@ -43,15 +43,12 @@ class EntityMediator:
                 if now > getattr(player, "invulnerable_until", 0):
                     ent1.health -= ent2.damage
                     player.invulnerable_until = now + INVULN_MS
-                    try:
-                        if getattr(ent1, "collision_sound", None) is not None:
-                            ch = pygame.mixer.find_channel()
-                            if ch is not None:
-                                ch.play(ent1.collision_sound)
-                            else:
-                                ent1.collision_sound.play()
-                    except Exception as e:
-                        print("Erro ao tocar som de colisão:", e)
+                    if getattr(ent1, "collision_sound", None) is not None:
+                        ch = pygame.mixer.find_channel()
+                        if ch is not None:
+                            ch.play(ent1.collision_sound)
+                        else:
+                            ent1.collision_sound.play()
                 else:
                     pass
 
